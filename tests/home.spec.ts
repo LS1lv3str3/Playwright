@@ -1,7 +1,7 @@
 import { it } from 'node:test';
 import { expect, test } from 'playwright/test';
 
-test.describe('Home Page', async () => {
+test.describe('Home Page with no auth', async () => {
 
     test.beforeEach(async ({ page }) => {
         //? Go to the home page of pratice software testing
@@ -57,4 +57,22 @@ test.describe('Home Page', async () => {
         await expect (await page.getByTestId('product-name')).toHaveText('Thor Hammer');
     });
 
+});
+
+test.describe('Customer 01 Account Page', async () => {
+
+    //? This test is going to use the session state created in the auth.setup.ts file
+    test.use({storageState: '.auth/costomer01.json'});
+
+    //? Before each test, go to the home page with the customer 01 session
+    test.beforeEach(async ({ page }) => {
+        await page.goto('https://practicesoftwaretesting.com/');
+    })
+
+    //? Test to check if the customer 01 is logged in - I can check if the customer is logged in by checking if the sign in button is not displayed or if the nav-menu has the name of the customer in this case I use double check because I want to check if he is login and if is right account.
+
+    test('check if the customer 01 is sign in', async ({ page }) => {
+        await expect(page.getByTestId('nav-sign-in')).not.toBeVisible();
+        await expect(page.getByTestId('nav-menu')).toContainText('Jane Doe');
+    });
 });
