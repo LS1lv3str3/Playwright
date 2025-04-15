@@ -26,6 +26,8 @@ test.describe('Home Page with no auth', async () => {
             //? I can use the option mask to put one mask in the element that I want to hide
             mask: [page.getByTitle('Practice Software Testing - Toolshop')],
             maskColor: 'green', // I can change the color of the mask (default is pink)
+            fullPage: true, // I can use the option fullPage to take a screenshot of the whole page
+            maxDiffPixelRatio: 0.1, // I can use the option maxDiffPixelRatio to set the maximum difference between the screenshots
         });
     });
 
