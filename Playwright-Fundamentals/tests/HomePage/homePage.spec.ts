@@ -1,5 +1,5 @@
 import { it } from 'node:test';
-import { expect, test } from 'playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Home Page with no auth', async () => {
 

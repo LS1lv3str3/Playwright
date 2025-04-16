@@ -21,7 +21,6 @@ setup('Create customer 01 auth', async ({page, context}) =>{
     await page.getByTestId('login-submit').click();
 
     //? Check if the login was successfull - I can che i the login was successfull by check nav-menu has the name of the customer or if the sign in link is not displayed
-    //await expect(page.getByTestId('nav-sign-in')).not.toBeVisible();
     await expect(page.getByTestId('nav-menu')).toHaveText('Jane Doe');
 
     //? Save the session - This is the session state, I will can use it in the future to login

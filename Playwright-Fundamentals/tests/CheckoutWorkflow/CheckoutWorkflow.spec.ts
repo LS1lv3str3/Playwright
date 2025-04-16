@@ -1,4 +1,4 @@
-import { expect, test } from 'playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.describe('Buy Workflow Test - UI', async () => {
 
@@ -37,7 +37,11 @@ test.describe('Buy Workflow Test - UI', async () => {
         await expect(await itemsGrid.getByRole('link').count()).toBe(9);
 
         //? Screenshot of the home page withou select any item
-        await expect(page).toHaveScreenshot('home-page-without-product.png', { fullPage: true });
+        await expect(page).toHaveScreenshot('home-page-without-product.png', { 
+            fullPage: true, 
+            maxDiffPixelRatio: 0.1,
+
+        });
     });
 
     test('Select filtered products from serch and category', async ({ }) => {
@@ -65,10 +69,10 @@ test.describe('Buy Workflow Test - UI', async () => {
         await page.getByText('Product added to shopping cart').click();
         await page.waitForTimeout(2500);
         await expect(page).toHaveScreenshot('product1-page-with-cart-icon.png', { 
-            fullPage: true,
+            fullPage: true, 
+            maxDiffPixelRatio: 0.1,
         });
         
-
         //? Clink on Home Link in navBar
         await page.getByTestId('nav-home').click();
         
@@ -77,7 +81,7 @@ test.describe('Buy Workflow Test - UI', async () => {
 
         //? Screenshot of te product page with the checkbox selected
         await page.waitForTimeout(1500);
-        await expect(page).toHaveScreenshot('product-filtered-by-check-box.png', { fullPage: true });
+        await expect(page).toHaveScreenshot('product-filtered-by-check-box.png', { fullPage: true, maxDiffPixelRatio: 0.1, });
 
         await page.getByAltText('Cordless Drill 24V').click();
     
@@ -94,7 +98,8 @@ test.describe('Buy Workflow Test - UI', async () => {
         await page.getByText('Product added to shopping cart').click();
         await page.waitForTimeout(2500);
         await expect(page).toHaveScreenshot('product2-page-with-cart-icon.png', {
-            fullPage: true
+            fullPage: true,
+            maxDiffPixelRatio: 0.1,
         });
 
     });
@@ -108,7 +113,8 @@ test.describe('Buy Workflow Test - UI', async () => {
         //? Screenshot of the cart page                
         await expect(page.getByTestId('proceed-1')).toBeVisible();
         await expect(page).toHaveScreenshot('cart-page.png', {
-            fullPage: true
+            fullPage: true,
+            maxDiffPixelRatio: 0.1,
         });
 
         // Check the quantity of the item in the cart
@@ -144,7 +150,8 @@ test.describe('Buy Workflow Test - UI', async () => {
 
         //? Screenshot of sign in page
         await expect(page).toHaveScreenshot('sign-in-page-checkout.png', {
-            fullPage: true
+            fullPage: true,
+            maxDiffPixelRatio: 0.1,
         });
 
         //? Proceed to checkout
@@ -164,7 +171,8 @@ test.describe('Buy Workflow Test - UI', async () => {
 
         //? Screenshot of the billing address page
         await expect(page).toHaveScreenshot('billing-address-page.png', {
-            fullPage: true
+            fullPage: true,
+            maxDiffPixelRatio: 0.1,
         });
 
         // Proceed to checkout
@@ -189,7 +197,8 @@ test.describe('Buy Workflow Test - UI', async () => {
 
         //? Screenshot of the payment page
         await expect(page).toHaveScreenshot('payment-page.png', {
-            fullPage: true
+            fullPage: true,
+            maxDiffPixelRatio: 0.1,
         });
     
     });

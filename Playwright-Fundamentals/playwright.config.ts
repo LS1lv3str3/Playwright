@@ -36,7 +36,8 @@ export default defineConfig({
     ignoreHTTPSErrors: true,
     video: "retain-on-failure",
     screenshot: "only-on-failure",
-    headless: true,
+    headless: false,
+    viewport: { width: 1920, height: 1080 },
   },
 
   /* Configure projects for major browsers */
@@ -48,7 +49,7 @@ export default defineConfig({
     {
       name: "chromium",
       dependencies: ["setup"],
-      use: { ...devices["Desktop Chrome"], permissions: ["clipboard-read"] },
+      use: { ...devices["Desktop Chrome"]},
     },
     // {
     //   name: 'firefox',

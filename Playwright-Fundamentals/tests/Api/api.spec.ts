@@ -13,7 +13,7 @@ test.describe('API Tests', () => {
         const body = await response.json();
 
         //? Analyze the response with Debug tools
-        console.log(body);
+        //console.log(body);
         /**
          * After analyzing the response, I can see that the response is an array of objects (data).
          * All objects is paginated, so I can use the following code to get the first page of the response.
