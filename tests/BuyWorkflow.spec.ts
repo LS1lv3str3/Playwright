@@ -13,7 +13,6 @@ test.describe('Buy Workflow Test - UI', async () => {
 
         await page.goto('https://practicesoftwaretesting.com/');
 
-
     });
 
     test.beforeEach(async ({ }) => {
@@ -36,6 +35,9 @@ test.describe('Buy Workflow Test - UI', async () => {
         await expect(itemsGrid.getByRole('link')).toHaveCount(9);
         //It go to count all items and check if the count is 9
         await expect(await itemsGrid.getByRole('link').count()).toBe(9);
+
+        //? Screenshot of the home page withou select any item
+        await expect(page).toHaveScreenshot('home-page-without-product.png', { fullPage: true });
     });
 
     test('Select filtered products from serch and category', async ({ }) => {
@@ -50,6 +52,7 @@ test.describe('Buy Workflow Test - UI', async () => {
         for (let i = 0; i < 2; i++) {
             await page.getByTestId('increase-quantity').click();
         }
+
         await page.getByTestId('add-to-cart').click();
 
         // Check if the cart icon is visible
@@ -58,11 +61,24 @@ test.describe('Buy Workflow Test - UI', async () => {
         // Check the quantity of the item in the cart
         await expect(page.getByTestId('cart-quantity')).toHaveText('3');
 
+        //? Screenshot of the cart icon with the quantity of the item and the product page
+        await page.getByText('Product added to shopping cart').click();
+        await page.waitForTimeout(2500);
+        await expect(page).toHaveScreenshot('product1-page-with-cart-icon.png', { 
+            fullPage: true,
+        });
+        
+
         //? Clink on Home Link in navBar
         await page.getByTestId('nav-home').click();
         
         //? Select the checkbox "Drill" in Power Tools category and search for the product "Cordless Drill 24V"
         await page.getByText('Drill').check();
+
+        //? Screenshot of te product page with the checkbox selected
+        await page.waitForTimeout(1500);
+        await expect(page).toHaveScreenshot('product-filtered-by-check-box.png', { fullPage: true });
+
         await page.getByAltText('Cordless Drill 24V').click();
     
         //? Add 2 quantity of the item to the cart by input field
@@ -75,6 +91,12 @@ test.describe('Buy Workflow Test - UI', async () => {
         // Check the quantity of the item in the cart
         await expect(page.getByTestId('cart-quantity')).toHaveText('5');
 
+        await page.getByText('Product added to shopping cart').click();
+        await page.waitForTimeout(2500);
+        await expect(page).toHaveScreenshot('product2-page-with-cart-icon.png', {
+            fullPage: true
+        });
+
     });
 
 
@@ -82,7 +104,12 @@ test.describe('Buy Workflow Test - UI', async () => {
         
         //? Check if the cart page is displayed and check if the item is displayed in the cart
         await page.getByTestId('nav-cart').click();
+
+        //? Screenshot of the cart page                
         await expect(page.getByTestId('proceed-1')).toBeVisible();
+        await expect(page).toHaveScreenshot('cart-page.png', {
+            fullPage: true
+        });
 
         // Check the quantity of the item in the cart
         const products = [
@@ -115,6 +142,11 @@ test.describe('Buy Workflow Test - UI', async () => {
         //? Check if the proceed to checkout button is displayed - The expected result is the button is displayed because we used the session state created in the auth.setup.ts file
         await expect(page.getByTestId('proceed-2')).toBeVisible(); 
 
+        //? Screenshot of sign in page
+        await expect(page).toHaveScreenshot('sign-in-page-checkout.png', {
+            fullPage: true
+        });
+
         //? Proceed to checkout
         await page.getByTestId('proceed-2').click();
     });
@@ -129,6 +161,11 @@ test.describe('Buy Workflow Test - UI', async () => {
         //? Fill the State and Your Postcode (Informantion is not provide by user)
         await page.getByTestId('state').fill('Vienna');
         await page.getByTestId('postal_code').fill('1010');
+
+        //? Screenshot of the billing address page
+        await expect(page).toHaveScreenshot('billing-address-page.png', {
+            fullPage: true
+        });
 
         // Proceed to checkout
         await page.getByTestId('proceed-3').click();    
@@ -149,6 +186,11 @@ test.describe('Buy Workflow Test - UI', async () => {
         //? Complete the payment and check if the payment successful message is displayed
         await page.getByTestId('finish').click();
         await expect(page.getByTestId('payment-success-message')).toBeVisible();
+
+        //? Screenshot of the payment page
+        await expect(page).toHaveScreenshot('payment-page.png', {
+            fullPage: true
+        });
     
     });
 });

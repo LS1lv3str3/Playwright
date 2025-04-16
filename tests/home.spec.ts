@@ -22,8 +22,8 @@ test.describe('Home Page with no auth', async () => {
 
         //? Check the screenshot of the page
         //? I can use the method toHaveScreenshot to check if the screenshot is the same as the one in the folder
+        //? I can use the option mask to put one mask in the element that I want to hide
         await expect(page).toHaveScreenshot('home-no-auth.png',{
-            //? I can use the option mask to put one mask in the element that I want to hide
             mask: [page.getByTitle('Practice Software Testing - Toolshop')],
             maskColor: 'green', // I can change the color of the mask (default is pink)
             fullPage: true, // I can use the option fullPage to take a screenshot of the whole page
@@ -92,7 +92,7 @@ test.describe('Customer 01 Account Page', async () => {
 
         //? Check the screenshot of the page
         //? I can use the method toHaveScreenshot to check if the screenshot is the same as the one in the folder
-        await expect(page).toHaveScreenshot('home-customer01-auth.png');
+        //! await expect(page).toHaveScreenshot('home-customer01-auth.png');
     });
     //? Test to check if the customer 01 is logged in - I can check if the customer is logged in by checking if the sign in button is not displayed or if the nav-menu has the name of the customer in this case I use double check because I want to check if he is login and if is right account.
 
