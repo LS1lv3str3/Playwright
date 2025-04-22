@@ -4,11 +4,11 @@ import { BasePage } from './basePage.pom';
 
 export class LoginPage extends BasePage {
 
-    public readonly signInButtonLocator: Locator;
-    public readonly emailLocator: Locator;
-    public readonly passwordLocator: Locator;
-    public readonly loginButtonLocator: Locator;
-    public readonly linkNavBarLocator: Locator;
+    readonly signInButtonLocator: Locator;
+    readonly emailLocator: Locator;
+    readonly passwordLocator: Locator;
+    readonly loginButtonLocator: Locator;
+    readonly linkNavBarLocator: Locator;
 
     constructor(page: Page) {
         super(page);
@@ -20,11 +20,13 @@ export class LoginPage extends BasePage {
     }
 
     async signInApplication(email, password){
-        await this.navigateToHomePage('https://practicesoftwaretesting.com/');
+        await this.goToHomePageFromUrl('https://practicesoftwaretesting.com/');
         await this.signInButtonLocator.click();
         await this.emailLocator.fill(email);
         await this.passwordLocator.fill(password);
         await this.loginButtonLocator.click();
         await expect(this.linkNavBarLocator).toBeVisible();
     }
+
+
 };

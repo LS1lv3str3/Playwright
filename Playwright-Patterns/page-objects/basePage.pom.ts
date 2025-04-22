@@ -1,13 +1,21 @@
-import { Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 
 export class BasePage {
-    public readonly page : Page;
+    readonly page : Page;
+    readonly linkToHomePageLocator: Locator;
+
 
     constructor(page: Page) {
         this.page = page;
+        this.linkToHomePageLocator = this.page.getByRole('link', { name: 'Home' });
     }
 
-    navigateToHomePage(url : string) {
-        this.page.goto(url);
+    async goToHomePageFromUrl(url : string) {
+        await this.page.goto(url);
+    }
+
+    async goToHomePageFromNavBar() {
+        await this.page.getByRole('link', { name: 'Home' }).waitFor({ state: 'visible' });
+        await this.page.getByRole('link', { name: 'Home' }).click();
     }
 }

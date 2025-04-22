@@ -1,5 +1,5 @@
 import {test as base} from '@playwright/test';
-import {LoginPage} from '../page-objects/login-page.pom';
+import {LoginPage} from '../page-objects/index.ts';
 
 type PagesModel = {
     loginPage: LoginPage;
