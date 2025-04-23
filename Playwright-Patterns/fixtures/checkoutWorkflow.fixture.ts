@@ -18,9 +18,6 @@ export const test = base.extend<PagesModel>({
     homePage: async ({page}, use) => {
         const homePage = new HomePage(page);
 
-        //? Navigation to the home page is done in the constructor of the HomePage class
-        await homePage.goToHomePageFromUrl('https://practicesoftwaretesting.com/');
-
         //? Wait for the home page to load
         await use(homePage);
     },

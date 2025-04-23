@@ -9,6 +9,8 @@ export class HomePage extends BasePage {
     readonly textboxSearchLocator: Locator;
     readonly buttonSearchLocator: Locator;
     readonly checkboxFilterByDrillLocator: Locator;
+    readonly linkCartLocator: Locator;
+    readonly alertMessageLocator: Locator;
 
     constructor(page) {
         super(page);
@@ -18,6 +20,8 @@ export class HomePage extends BasePage {
         this.textboxSearchLocator = page.getByRole('textbox', { name: 'Search' });
         this.buttonSearchLocator = page.getByRole('button', { name: 'Search' });
         this.checkboxFilterByDrillLocator = page.getByRole('checkbox', { name: 'Drill' });
+        this.linkCartLocator = page.getByRole('link', { name: 'cart' });
+        this.alertMessageLocator = page.getByRole('alert', { name: 'Product added to shopping cart' });
 
     }
 

@@ -1,14 +1,17 @@
 import { Locator, Page } from 'playwright/test';
+import { BasePage } from './basePage.pom';
 
 
-export class ProductPage {
+export class ProductPage extends BasePage {
 
     readonly buttonIncreaseQuantityLocator: Locator;
     readonly buttonDecreaseQuantityLocator: Locator;
     readonly buttonAddToCartLocator: Locator;
     readonly buttonAddToWishListLocator: Locator;
+    
 
     constructor(page) {
+        super(page);
 
         this.buttonIncreaseQuantityLocator = page.getByRole('button', { name: 'Increase quantity' });
         this.buttonDecreaseQuantityLocator = page.getByRole('button', { name: 'Decrease quantity' });

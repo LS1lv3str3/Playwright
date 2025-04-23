@@ -15,8 +15,7 @@ export default defineConfig({
   timeout: 30_000,
   globalTimeout: 10 * 60 * 1000,
   testDir: "./tests",
-  /* Run tests in files in parallel */
-  fullyParallel: true,
+  
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI 2 times and locally 1 time */
@@ -40,6 +39,8 @@ export default defineConfig({
     viewport: { width: 1920, height: 1080 },
   },
 
+  globalSetup: require.resolve('./browserSetup/browserSetup.ts'),
+
   /* Configure projects for major browsers */
   projects: [
     {
@@ -49,7 +50,11 @@ export default defineConfig({
     {
       name: "chromium",
       dependencies: ["setup"],
-      use: { ...devices["Desktop Chrome"]},
+      use: { 
+        ...devices["Desktop Chrome"],
+        // Add this line to use the stored state
+        storageState: 'Playwright-Patterns/.auth/costomer01.json',
+      },
     },
     // {
     //   name: 'firefox',
