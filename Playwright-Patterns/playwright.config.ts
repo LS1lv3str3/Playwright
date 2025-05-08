@@ -53,7 +53,7 @@ export default defineConfig({
       use: { 
         ...devices["Desktop Chrome"],
         // Add this line to use the stored state
-        storageState: 'Playwright-Patterns/.auth/costomer01.json',
+        storageState: '.auth/costomer01.json',
       },
     },
     // {

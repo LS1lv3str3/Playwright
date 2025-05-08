@@ -12,7 +12,7 @@ async function globalSetup(config: FullConfig) {
     const email = 'customer@practicesoftwaretesting.com';
     const password = 'welcome01';
     //Path for the file with all session browser information
-    const customer01AuthFile = 'Playwright-Patterns/.auth/costomer01.json';
+    const customer01AuthFile = '.auth/costomer01.json';
 
     await loginPage.goToHomePageFromUrl('https://practicesoftwaretesting.com/auth/login/');
     await loginPage.signInApplication(email, password);
